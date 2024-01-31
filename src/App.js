@@ -41,3 +41,25 @@ const questions = [
     answer: "Controlled element",
   },
 ];
+
+function FlashCards() {
+  const [selectedId, setSelectedId] = useState();
+
+  function showAnswer(id) {
+    return setSelectedId(id !== selectedId ? id : null);
+  }
+
+  return (
+    <div className="flashcards">
+      {questions.map((card) => (
+        <div
+          key={card.id}
+          onClick={() => showAnswer(card.id)}
+          className={selectedId === card.id ? "selected" : ""}
+        >
+          {selectedId === card.id ? card.answer : card.question}
+        </div>
+      ))}
+    </div>
+  );
+}
